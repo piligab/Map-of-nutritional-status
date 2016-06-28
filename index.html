@@ -47,12 +47,11 @@
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoicGlsaWdhYnNxIiwiYSI6ImNpcHR0ZHBpMDA2bGRoMm5ybDk3NGg4dDgifQ.2Zr656kj12uxtuBecS5OWg';
   var map = L.mapbox.map('map', 'mapbox.streets')
-    //.setView([-12, -74], 4);
     .setView([-13, -74], 10);
 
   var popup = new L.Popup({ autoPan: false });
 
-  // statesData comes from the 'us-states.js' script included above
+  // statesData 
   var statesLayer = L.geoJson(statesData,  {
       style: getStyle,
       onEachFeature: onEachFeature
@@ -68,14 +67,14 @@ L.mapbox.accessToken = 'pk.eyJ1IjoicGlsaWdhYnNxIiwiYSI6ImNpcHR0ZHBpMDA2bGRoMm5yb
       };
   }
 
-  // get color depending on population density value
+  // get color 
   function getColor(d) {
     console.log(d)
-          return d > 40 ? '#FF0000' :
-          d > 30  ? '#FE9A2E' :
-          d > 20   ? '#FFFF00' :
-          d > 10   ? '#088A08' :
-          '#A9F5A9';
+          return d > 40 ? '#239B56' :
+          d > 30  ? '#2ECC71' :
+          d > 20   ? '#82E0AA' :
+          d > 10   ? '#D5F5E3' :
+          '#EAFAF1';
   }
 
   function onEachFeature(feature, layer) {
@@ -87,29 +86,6 @@ L.mapbox.accessToken = 'pk.eyJ1IjoicGlsaWdhYnNxIiwiYSI6ImNpcHR0ZHBpMDA2bGRoMm5yb
   }
 
   var closeTooltip;
-/*
-  function mousemove(e) {
-      var layer = e.target;
-
-      popup.setLatLng(e.latlng);
-      popup.setContent('<div class="marker-title">' + layer.feature.properties.NAME_3 + '</div>' +
-           '<div class="chart">'+
-  '<div style="width: '+feature.properties.Est_Nut+'px;">'+feature.properties.Est_Nut+'</div></div>');
-
-      if (!popup._map) popup.openOn(map);
-      window.clearTimeout(closeTooltip);
-
-      // highlight feature
-      layer.setStyle({
-          weight: 3,
-          opacity: 0.3,
-          fillOpacity: 0.9
-      });
-
-      if (!L.Browser.ie && !L.Browser.opera) {
-          layer.bringToFront();
-      }
-  }*/
 
   function mousemove(e) {
       var layer = e.target;
@@ -158,14 +134,10 @@ L.mapbox.accessToken = 'pk.eyJ1IjoicGlsaWdhYnNxIiwiYSI6ImNpcHR0ZHBpMDA2bGRoMm5yb
       labels.push(
         '<li><span class="swatch" style="background:' + getColor(from + 1) + '"></span> ' +
         from + (to ? '&ndash;' + to : '+')) + '</li>';
-        //from + (to ? '&ndash;' + to : '+'))'</li>';
-
-
     }
-    //return '<span> STATUS NUTRITIONAL OF CHILDREN </span><ul>' + '<span>Malnourished children</span><ul>' + labels.join('') + '</ul>';
+    
     return '<span> NUTRITIONAL STATUS OF CHILDREN IN THE PROVINCE OF HUAMANGA </span><ul>' + labels.join('') + '</ul>';
-    //return '<span> STATUS NUTRITIONAL OF CHILDREN OF THE PROVINCE OF HUAMANGA </span>' + '<span>PERCENTAGE OF CHRONIC MALNUTRITION</span><ul>' + labels.join('') + '</ul>';
-    //return '<span>Malnourished children</span><ul>' + labels.join('') + '</ul>';
+    
   }
 </script>
 
